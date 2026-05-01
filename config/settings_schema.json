@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Theme",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement bar text",
+        "default": "Welcome to MODERA"
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+<footer>
+  <div class="footer-slogan">
+    <p class="footer-slogan-text">
+      <strong>Stay loyal to the culture.</strong>
+      &nbsp; Be true to yourself.
+      &nbsp; <strong>Find art in simple history.</strong>
+    </p>
+  </div>
+
+  <div class="footer-main">
+    <div class="footer-wordmark">
+      <span class="footer-brand-name">{{ shop.name | default: 'MODERA' }}</span>
+      <span class="footer-brand-kr">모두의 새로운 시대</span>
+    </div>
+    <div class="footer-center">
+      <p class="footer-motto">
+        Introducing Korean history<br/>
+        to modern-day New York City.<br/>
+        <br/>
+        Building a community.<br/>
+        Uniting the east and the west.
+      </p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="https://instagram.com/modera.nysl" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p class="footer-copy">© {{ 'now' | date: "%Y" }} {{ shop.name | default: 'Modera' }}. NYC × Seoul. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
