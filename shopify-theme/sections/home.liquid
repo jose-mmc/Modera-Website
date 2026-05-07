@@ -1,9 +1,17 @@
-<!-- Converted from your index.html body (hero, sections, gallery, etc.) -->
+<!-- ─── HERO ─────────────────────────────────────────── -->
 <section id="hero">
   <div class="hero-bg-word" aria-hidden="true">충성</div>
 
   <div class="hero-logo-stamp">
-    <img src="{{ 'IMG_1150.PNG' | asset_url }}" alt="모데라 NYSL" />
+    <svg viewBox="0 0 160 122" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <clipPath id="cloudClip">
+          <path d="M 28,102 C 10,102 4,90 7,75 C 1,60 12,50 27,51 C 22,28 40,17 58,22 C 64,5 87,3 97,20 C 111,11 130,22 127,45 C 143,49 146,68 136,79 C 138,98 120,106 104,101 C 92,114 72,114 60,103 C 46,114 32,112 28,102 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M 28,102 C 10,102 4,90 7,75 C 1,60 12,50 27,51 C 22,28 40,17 58,22 C 64,5 87,3 97,20 C 111,11 130,22 127,45 C 143,49 146,68 136,79 C 138,98 120,106 104,101 C 92,114 72,114 60,103 C 46,114 32,112 28,102 Z" fill="#f0ebe0"/>
+      <image href="{{ 'IMG_1150.PNG' | asset_url }}" x="10" y="10" width="140" height="102" clip-path="url(#cloudClip)" preserveAspectRatio="xMidYMid meet"/>
+    </svg>
   </div>
 
   <p class="hero-eyebrow">NYC × SEOUL &nbsp;·&nbsp; All In. Always.</p>
@@ -46,8 +54,17 @@
   </div>
 </section>
 
+<!-- ─── TICKER ────────────────────────────────────────── -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
+    <span class="ticker-item">NYC</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">SEOUL</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">ALL IN</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">문화</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">NEW ERA</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">HERITAGE</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">충성</span><span class="ticker-item ticker-dot">×</span>
+    <span class="ticker-item">MODERA</span><span class="ticker-item ticker-dot">×</span>
     <span class="ticker-item">NYC</span><span class="ticker-item ticker-dot">×</span>
     <span class="ticker-item">SEOUL</span><span class="ticker-item ticker-dot">×</span>
     <span class="ticker-item">ALL IN</span><span class="ticker-item ticker-dot">×</span>
@@ -59,6 +76,107 @@
   </div>
 </div>
 
+<!-- ─── GALLERY: APPLIQUÉD ON GLOBAL STANDARDS ──────── -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="gallery-header-left">
+      <div class="section-label">First Edition</div>
+      <h2 class="gallery-title">
+        Appliquéd on<br/><span class="outline">Global Standards</span>
+      </h2>
+    </div>
+    <p class="gallery-note">
+      Every piece numbered and registered. Once an edition closes, it does not return.
+      The metropolitan few who understand identity is built over time.
+    </p>
+  </div>
+
+  <div class="gallery-grid">
+
+    <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+      <div class="product-coming-overlay">
+        <span class="product-coming-label">Coming Soon</span>
+        <span class="product-coming-cta">Get Notified</span>
+      </div>
+      <div class="product-img-wrap">
+        <img src="{{ 'hoodie3front.png' | asset_url }}" alt="Jindo NYC — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'hoodie3.png' | asset_url }}" alt="Jindo NYC back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Jindo NYC</div>
+          <div class="product-sub">진도 V1 Hoodie — First Edition</div>
+        </div>
+        <div class="product-edition">No. 01</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+      <div class="product-coming-overlay">
+        <span class="product-coming-label">Coming Soon</span>
+        <span class="product-coming-cta">Get Notified</span>
+      </div>
+      <div class="product-img-wrap">
+        <img src="{{ 'hoodie2front.png' | asset_url }}" alt="Gwon-tu — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'hoodie2.png' | asset_url }}" alt="Gwon-tu back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Gwon-tu</div>
+          <div class="product-sub">권투 Boxing Hoodie — First Edition</div>
+        </div>
+        <div class="product-edition">No. 02</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+      <div class="product-coming-overlay">
+        <span class="product-coming-label">Coming Soon</span>
+        <span class="product-coming-cta">Get Notified</span>
+      </div>
+      <div class="product-img-wrap">
+        <img src="{{ 'Hoodie1front.png' | asset_url }}" alt="Jindo Dancheong — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'Hoodie1.png' | asset_url }}" alt="Jindo Dancheong back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Jindo Dancheong</div>
+          <div class="product-sub">단청 V2 Hoodie — First Edition</div>
+        </div>
+        <div class="product-edition">No. 03</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── NOTIFY / WAITLIST ─────────────────────────────── -->
+<section id="notify">
+  <div class="reveal">
+    <p class="notify-overline">Be First</p>
+    <h2 class="notify-title">Get<br/>Notified</h2>
+    <p class="notify-sub">
+      The first edition is limited. Once it closes, it does not return.
+      Register your place — be part of something that lasts.
+    </p>
+    <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
+      <input type="text" name="_trap" style="display:none" tabindex="-1" autocomplete="off" />
+      <input
+        class="notify-input"
+        type="email"
+        id="notifyEmail"
+        placeholder="your@email.com"
+        required
+        autocomplete="email"
+      />
+      <button class="notify-btn" type="submit">Notify Me</button>
+    </form>
+    <p class="notify-note">No spam. First edition access only.</p>
+    <p class="notify-success" id="notifySuccess">You're on the list. Stay loyal. 충성.</p>
+  </div>
+</section>
+
+<!-- ─── ABOUT / MISSION ───────────────────────────────── -->
 <div id="about">
   <div class="about-text reveal">
     <div class="section-label">The Mission</div>
@@ -92,6 +210,7 @@
   </div>
 </div>
 
+<!-- ─── NYC × SEOUL SPLIT ─────────────────────────────── -->
 <div id="identity">
   <div class="identity-panel nyc reveal">
     <div class="identity-panel-bg" aria-hidden="true">NEW<br/>YORK</div>
@@ -114,17 +233,21 @@
   </div>
 </div>
 
+<!-- ─── SPIRIT / THE BOUT ─────────────────────────────── -->
 <div id="spirit">
   <div class="spirit-image reveal">
-    <img src="{{ 'IMG_3097.PNG' | asset_url }}" alt="Modera boxing gloves — stay in the ring" />
+    <img src="{{ 'IMG_3097.PNG' | asset_url }}" alt="Modera boxing gloves — staying in the ring" />
   </div>
   <div class="spirit-text reveal">
     <div class="spirit-bg-word" aria-hidden="true">FIGHT</div>
     <div class="section-label red">The Spirit</div>
-    <h2 class="spirit-title">Life is a bout.<br/>Stay in the ring.</h2>
+    <h2 class="spirit-title">Life is about<br/>staying in the ring.</h2>
     <p class="spirit-body">
       Gritty. Intentional. Deeply personal. The uniform for the modern-day warrior—shaped
       by the discipline of the boxing ring and the quiet dignity of one's ancestors.
+      Life in New York, combined with the pressure to maintain one's culture, is about
+      that requires constant movement, resilience, and pride. You don't leave the ring.
+      You fight your way through.
     </p>
     <div class="spirit-glyphs">
       <div class="glyph-item">
@@ -139,110 +262,44 @@
   </div>
 </div>
 
-<section id="gallery">
-  <div class="gallery-header reveal">
-    <div class="gallery-header-left">
-      <div class="section-label">First Edition</div>
-      <h2 class="gallery-title">
-        Appliquéd on<br/><span class="outline">Global Standards</span>
-      </h2>
-    </div>
-    <p class="gallery-note">
-      Every piece numbered and registered. Once an edition closes, it does not return.
-      The metropolitan few who understand identity is built over time.
-    </p>
-  </div>
-
-  {% comment %} Use a Shopify collection called "first-edition" if present. Falls back to static cards. {% endcomment %}
-  {% if collections['first-edition'] and collections['first-edition'].products_count > 0 %}
-    <div class="gallery-grid">
-      {% for product in collections['first-edition'].products %}
-        <div class="product-card reveal">
-          <div class="product-img-wrap">
-            <a href="{{ product.url }}">
-              {% if product.featured_image %}
-                <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" />
-              {% else %}
-                <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="{{ product.title }}" />
-              {% endif %}
-            </a>
-          </div>
-          <div class="product-info">
-            <div>
-              <div class="product-name">{{ product.title }}</div>
-              <div class="product-sub">{{ product.vendor }}{% if product.type %} · {{ product.type }}{% endif %}</div>
-            </div>
-            <div class="product-edition">No. {{ forloop.index }}</div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="gallery-grid">
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="The Jindo Layer — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Jindo Layer</div>
-            <div class="product-sub">Layered Long Sleeve — First Edition</div>
-          </div>
-          <div class="product-edition">No. 01</div>
-        </div>
-      </div>
-
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="{{ 'IMG_3136.PNG' | asset_url }}" alt="The Bout — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Bout</div>
-            <div class="product-sub">Boxy Long Sleeve — First Edition</div>
-          </div>
-          <div class="product-edition">No. 02</div>
-        </div>
-      </div>
-
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="{{ 'IMG_3165.PNG' | asset_url }}" alt="The Jindo Hoodie — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Jindo Hoodie</div>
-            <div class="product-sub">Heavyweight Hoodie — First Edition</div>
-          </div>
-          <div class="product-edition">No. 03</div>
-        </div>
-      </div>
-
-    </div>
-  {% endif %}
-</section>
-
+<!-- ─── JINDO ─────────────────────────────────────────── -->
 <section id="jindo">
+  <div class="jindo-bg-char" aria-hidden="true">忠</div>
   <div class="reveal">
-    <div class="section-label">The Symbol</div>
+    <div class="section-label centered">The Symbol</div>
     <h2 class="jindo-title">The<br/>Loyalty<br/>of the<br/>Jindo</h2>
     <p class="jindo-body">
       The Jindo is a Korean national treasure — known for its unwavering loyalty
-      and its instinct to always find its way home.
+      and its instinct to always find its way home. No matter how far you travel
+      or how much you adapt to a new environment, you remain loyal to the culture
+      that made you. The Jindo doesn't abandon its nature for a new place.
+      Neither do we.
     </p>
-    <div class="jindo-glyph-row">
-      <span class="jindo-glyph-char">忠</span>
-      <div class="jindo-glyph-text">
-        <span class="jindo-glyph-label">충성 · Loyalty</span>
-        <span class="jindo-glyph-sub">The way of the Jindo. The way of Modera.</span>
+    <div class="jindo-attrs">
+      <div class="jindo-attr">
+        <span class="jindo-attr-kr">충성</span>
+        <span class="jindo-attr-en">Loyalty</span>
+      </div>
+      <div class="jindo-attr">
+        <span class="jindo-attr-kr">본능</span>
+        <span class="jindo-attr-en">Instinct</span>
+      </div>
+      <div class="jindo-attr">
+        <span class="jindo-attr-kr">고향</span>
+        <span class="jindo-attr-en">Home</span>
+      </div>
+    </div>
+    <div class="jindo-seal">
+      <span class="jindo-seal-char">忠</span>
+      <div class="jindo-seal-text">
+        <span class="jindo-seal-label">충성 · Loyalty</span>
+        <span class="jindo-seal-sub">The way of the Jindo. The way of Modera.</span>
       </div>
     </div>
   </div>
-  <div class="jindo-product-wrap reveal">
-    <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="The Jindo Layer — heritage on global standards" />
-  </div>
 </section>
 
+<!-- ─── FIRST EDITION RULES ───────────────────────────── -->
 <section id="collection">
   <div class="reveal">
     <p class="collection-overline">Dropping Soon</p>
@@ -274,6 +331,7 @@
   </div>
 </section>
 
+<!-- ─── PHILOSOPHY CARDS ──────────────────────────────── -->
 <section id="philosophy">
   <div class="section-label reveal">The Way</div>
   <div class="p-grid">
@@ -281,36 +339,31 @@
       <div class="p-card-hover"></div>
       <div class="p-card-num">001</div>
       <h3 class="p-card-title">All In.<br/>Always.</h3>
-      <p class="p-card-body">"Modo" — all. "Era" — a new chapter.</p>
+      <p class="p-card-body">
+        "Modo" — all. "Era" — a new chapter. Modera is the commitment to enter
+        every room, every era, with everything you have and everything you are.
+      </p>
       <div class="p-card-kr" aria-hidden="true">全</div>
     </div>
     <div class="p-card reveal">
       <div class="p-card-hover"></div>
       <div class="p-card-num">002</div>
       <h3 class="p-card-title">The Loyalty<br/>of the Jindo</h3>
-      <p class="p-card-body">The Jindo knows only one path home — its own.</p>
+      <p class="p-card-body">
+        The Jindo knows only one path home — its own. No matter how far you travel
+        or how much you adapt, you remain loyal to the culture that made you.
+      </p>
       <div class="p-card-kr" aria-hidden="true">義</div>
     </div>
     <div class="p-card reveal">
       <div class="p-card-hover"></div>
       <div class="p-card-num">003</div>
       <h3 class="p-card-title">Built for the<br/>Metropolitan Few</h3>
-      <p class="p-card-body">Not for everyone. For those who understand identity is built over time.</p>
+      <p class="p-card-body">
+        Not for everyone. For those who understand that identity is built over time,
+        not overnight. For the modern-day warrior who carries the past into the future.
+      </p>
       <div class="p-card-kr" aria-hidden="true">魂</div>
     </div>
-  </div>
-</section>
-
-<section id="notify">
-  <div class="reveal">
-    <p class="notify-overline">Be First</p>
-    <h2 class="notify-title">Get<br/>Notified</h2>
-    <p class="notify-sub">The first edition is limited. Once it closes, it does not return.</p>
-    <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
-      <input class="notify-input" type="email" id="notifyEmail" placeholder="your@email.com" required autocomplete="email" />
-      <button class="notify-btn" type="submit">Notify Me</button>
-    </form>
-    <p class="notify-note">No spam. First edition access only.</p>
-    <p class="notify-success" id="notifySuccess">You're on the list. Stay loyal. 충성.</p>
   </div>
 </section>

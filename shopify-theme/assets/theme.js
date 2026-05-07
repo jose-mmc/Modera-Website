@@ -1,12 +1,43 @@
-// Copied script from index.html - nav scroll, reveal observers, notify form, hero parallax
+// ─── NAV ──────────────────────────────────────────────
 const nav = document.getElementById('nav');
-if (nav) {
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
+const launchBanner = document.getElementById('launchBanner');
+
+function updateBanner() {
+  launchBanner.style.top = nav.offsetHeight + 'px';
+}
+updateBanner();
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+  updateBanner();
+}, { passive: true });
+
+// ─── HAMBURGER MENU ───────────────────────────────────
+const hamburger = document.getElementById('navHamburger');
+const navMenu   = document.getElementById('navMenu');
+const navOverlay = document.getElementById('navOverlay');
+const menuClose  = document.getElementById('menuClose');
+
+function openMenu() {
+  hamburger.classList.add('active');
+  navMenu.classList.add('open');
+  navOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-// Reveal observer
+function closeMenu() {
+  hamburger.classList.remove('active');
+  navMenu.classList.remove('open');
+  navOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+navOverlay.addEventListener('click', closeMenu);
+document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
+
+// ─── SCROLL REVEAL ────────────────────────────────────
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
     if (e.isIntersecting) {
@@ -34,18 +65,64 @@ document.querySelectorAll('.p-grid, .gallery-grid, .collection-rules').forEach((
   staggerObs.observe(el);
 });
 
-// Notify form
-function handleNotify(e) {
+// ─── NOTIFY FORM ──────────────────────────────────────
+async function handleNotify(e) {
   e.preventDefault();
-  const form = document.getElementById('notifyForm');
-  const success = document.getElementById('notifySuccess');
-  if (form) form.style.display = 'none';
-  if (success) success.style.display = 'block';
+  if (document.querySelector('input[name="_trap"]').value) return;
+  const email = document.getElementById('notifyEmail').value;
+  const btn = document.querySelector('.notify-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WpzcDK', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'revision': '2024-02-15'
+      },
+      body: JSON.stringify({
+        data: {
+          type: 'subscription',
+          attributes: {
+            profile: {
+              data: {
+                type: 'profile',
+                attributes: { email }
+              }
+            }
+          },
+          relationships: {
+            list: {
+              data: {
+                type: 'list',
+                id: 'QS73uf'
+              }
+            }
+          }
+        }
+      })
+    });
+
+    if (res.status === 202 || res.status === 200) {
+      document.getElementById('notifyForm').style.display = 'none';
+      document.getElementById('notifySuccess').style.display = 'block';
+    } else {
+      const body = await res.text();
+      console.error('Klaviyo error:', res.status, body);
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    console.error('Klaviyo fetch error:', err);
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+  }
 }
 
 window.handleNotify = handleNotify;
 
-// Hero parallax
+// ─── HERO PARALLAX ────────────────────────────────────
 const heroBg = document.querySelector('.hero-bg-word');
 window.addEventListener('scroll', () => {
   if (heroBg && window.scrollY < window.innerHeight) {

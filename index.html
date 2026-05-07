@@ -12,15 +12,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:      #080808;
+      --black:      #141414;
       --off-white:  #f0ebe0;
       --cream:      #e8e0d0;
       --red:        #8b1a1a;
       --red-mid:    #b02020;
       --gold:       #c4a35a;
-      --gray-dark:  #0f0f0f;
-      --gray-mid:   #161616;
-      --gray-text:  #555;
+      --gray-dark:  #1d1d1d;
+      --gray-mid:   #262626;
+      --gray-text:  #686868;
       --border:     rgba(240,235,224,0.08);
       --border-vis: rgba(240,235,224,0.18);
     }
@@ -51,10 +51,10 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 500;
-      padding: 28px 52px;
+      padding: 22px 52px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       transition: background 0.4s, padding 0.4s;
     }
 
@@ -68,8 +68,8 @@
 
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.3em;
+      font-size: 30px;
+      letter-spacing: 0.35em;
       color: var(--off-white);
       text-decoration: none;
     }
@@ -102,6 +102,139 @@
 
     .nav-cta:hover { border-color: var(--off-white); }
 
+    .nav-link {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover { color: var(--off-white); }
+
+    /* ─── HAMBURGER ─────────────────────────────────────── */
+    .nav-hamburger {
+      position: absolute;
+      left: 52px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--off-white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ─── NAV MENU ──────────────────────────────────────── */
+    #navOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+
+    #navOverlay.open { opacity: 1; pointer-events: all; }
+
+    #navMenu {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 280px;
+      background: var(--gray-dark);
+      z-index: 999;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 88px 44px 44px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+
+    #navMenu.open { transform: translateX(0); }
+
+    .menu-close {
+      position: absolute;
+      top: 28px; right: 28px;
+      background: none;
+      border: none;
+      color: var(--gray-text);
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.3s;
+      line-height: 1;
+    }
+
+    .menu-close:hover { color: var(--off-white); }
+
+    .menu-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.3em;
+      color: var(--off-white);
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .menu-link {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.08em;
+      color: rgba(240,235,224,0.55);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.25s, padding-left 0.25s;
+      display: block;
+    }
+
+    .menu-link:hover { color: var(--off-white); padding-left: 8px; }
+    .menu-link.cta { color: var(--gold); }
+    .menu-link.cta:hover { color: var(--off-white); }
+
+    /* ─── LAUNCH BANNER ─────────────────────────────────── */
+    #launchBanner {
+      position: fixed;
+      left: 0; right: 0;
+      z-index: 497;
+      background: var(--red);
+      padding: 9px 0;
+      overflow: hidden;
+    }
+
+    .launch-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 18s linear infinite;
+    }
+
+    .launch-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      white-space: nowrap;
+      padding: 0 28px;
+      color: var(--off-white);
+      text-transform: uppercase;
+    }
+
     /* ─── HERO ──────────────────────────────────────────── */
     #hero {
       min-height: 100vh;
@@ -132,13 +265,12 @@
       top: 120px;
       right: 52px;
       width: clamp(100px, 12vw, 160px);
-      background: var(--off-white);
-      padding: 14px;
       opacity: 0;
       animation: fadeUp 0.9s 1.1s forwards;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.30));
     }
 
-    .hero-logo-stamp img {
+    .hero-logo-stamp svg {
       width: 100%;
       height: auto;
       display: block;
@@ -362,7 +494,7 @@
     }
 
     .about-body {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.5);
@@ -458,7 +590,7 @@
     }
 
     .identity-desc {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.48);
@@ -539,7 +671,7 @@
     }
 
     .spirit-body {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.5);
@@ -603,7 +735,7 @@
     }
 
     .gallery-note {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.8;
       color: rgba(240,235,224,0.45);
@@ -617,14 +749,61 @@
       gap: 2px;
     }
 
+    a.product-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .product-card {
       position: relative;
       overflow: hidden;
       cursor: pointer;
     }
 
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.04);
+    .product-img-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+
+    .product-card:hover .product-img-back { opacity: 1; }
+
+    .product-coming-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.72);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .product-card:hover .product-coming-overlay { opacity: 1; }
+
+    .product-coming-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .product-coming-cta {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      color: var(--off-white);
+      border: 1px solid var(--border-vis);
+      padding: 10px 24px;
     }
 
     .product-img-wrap {
@@ -683,10 +862,23 @@
     #jindo {
       background: var(--gray-dark);
       padding: 140px 52px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .jindo-bg-char {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 900;
+      font-size: clamp(280px, 45vw, 520px);
+      color: rgba(240,235,224,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
     }
 
     .jindo-title {
@@ -694,61 +886,98 @@
       font-size: clamp(52px, 7vw, 100px);
       line-height: 0.92;
       color: var(--off-white);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
     }
 
     .jindo-body {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.5);
-      max-width: 440px;
+      max-width: 560px;
+      margin: 0 auto 72px;
+      position: relative;
+      z-index: 1;
     }
 
-    .jindo-glyph-row {
+    .jindo-attrs {
       display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-top: 36px;
-      padding-top: 32px;
+      justify-content: center;
+      max-width: 680px;
+      margin: 0 auto 64px;
       border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
 
-    .jindo-glyph-char {
+    .jindo-attr {
+      flex: 1;
+      padding: 40px 24px;
+      border-left: 1px solid var(--border);
+    }
+
+    .jindo-attr:last-child { border-right: 1px solid var(--border); }
+
+    .jindo-attr-kr {
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 900;
-      font-size: 56px;
+      font-size: 32px;
+      color: var(--off-white);
+      display: block;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .jindo-attr-en {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .jindo-seal {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .jindo-seal-char {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
       color: var(--off-white);
       line-height: 1;
     }
 
-    .jindo-glyph-text { display: flex; flex-direction: column; gap: 4px; }
+    .jindo-seal-text {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: left;
+    }
 
-    .jindo-glyph-label {
-      font-size: 11px;
+    .jindo-seal-label {
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
-    .jindo-glyph-sub {
-      font-size: 11px;
+    .jindo-seal-sub {
+      font-size: 12px;
       font-weight: 300;
       color: var(--gray-text);
       letter-spacing: 0.08em;
     }
 
-    .jindo-product-wrap {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .jindo-product-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .section-label.centered { justify-content: center; }
 
     /* ─── COLLECTION ────────────────────────────────────── */
     #collection {
@@ -790,7 +1019,7 @@
     }
 
     .collection-body {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.48);
@@ -832,7 +1061,7 @@
     }
 
     .col-rule-desc {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 300;
       line-height: 1.85;
       color: var(--gray-text);
@@ -889,7 +1118,7 @@
     }
 
     .p-card-body {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 2;
       color: rgba(240,235,224,0.48);
@@ -908,10 +1137,9 @@
 
     /* ─── NOTIFY ────────────────────────────────────────── */
     #notify {
-      background: var(--black);
+      background: var(--off-white);
       padding: 140px 52px;
       text-align: center;
-      border-top: 1px solid var(--border);
     }
 
     .notify-overline {
@@ -919,7 +1147,7 @@
       font-weight: 600;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--red-mid);
       margin-bottom: 24px;
     }
 
@@ -927,28 +1155,29 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(52px, 8vw, 108px);
       line-height: 0.95;
-      color: var(--off-white);
+      color: var(--black);
       margin-bottom: 24px;
     }
 
     .notify-sub {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 2;
-      color: rgba(240,235,224,0.44);
-      max-width: 420px;
+      color: rgba(20,20,20,0.55);
+      max-width: 460px;
       margin: 0 auto 56px;
     }
 
     .notify-form {
       display: flex;
-      max-width: 460px;
+      max-width: 500px;
       margin: 0 auto;
-      border: 1px solid var(--border-vis);
-      transition: border-color 0.3s;
+      border: 1px solid rgba(20,20,20,0.18);
+      background: #fff;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
-    .notify-form:focus-within { border-color: rgba(240,235,224,0.35); }
+    .notify-form:focus-within { border-color: rgba(20,20,20,0.45); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
 
     .notify-input {
       flex: 1;
@@ -959,14 +1188,14 @@
       font-size: 12px;
       font-weight: 300;
       letter-spacing: 0.06em;
-      color: var(--off-white);
+      color: var(--black);
     }
 
-    .notify-input::placeholder { color: var(--gray-text); }
+    .notify-input::placeholder { color: rgba(20,20,20,0.35); }
 
     .notify-btn {
-      background: var(--off-white);
-      color: var(--black);
+      background: var(--red);
+      color: var(--off-white);
       border: none;
       padding: 18px 26px;
       font-family: 'Bebas Neue', sans-serif;
@@ -977,22 +1206,22 @@
       white-space: nowrap;
     }
 
-    .notify-btn:hover { background: var(--gold); }
+    .notify-btn:hover { background: var(--black); color: var(--off-white); }
 
     .notify-note {
-      margin-top: 16px;
-      font-size: 10px;
+      margin-top: 18px;
+      font-size: 11px;
       letter-spacing: 0.14em;
-      color: var(--gray-text);
+      color: rgba(20,20,20,0.38);
     }
 
     .notify-success {
       display: none;
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.25em;
-      color: var(--gold);
+      color: var(--red-mid);
       text-transform: uppercase;
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
     /* ─── FOOTER ────────────────────────────────────────── */
@@ -1109,8 +1338,10 @@
     @media (max-width: 1024px) {
       #spirit { grid-template-columns: 1fr; }
       .spirit-image { min-height: 60vw; }
-      #jindo { grid-template-columns: 1fr; gap: 0; padding: 100px 24px; }
-      .jindo-product-wrap { border-top: 1px solid var(--border); padding-top: 60px; }
+      #jindo { padding: 100px 24px; }
+      .jindo-attrs { flex-direction: column; }
+      .jindo-attr { border-left: none; border-right: none; border-bottom: 1px solid var(--border); }
+      .jindo-attr:first-child { border-top: 1px solid var(--border); }
     }
 
     @media (max-width: 860px) {
@@ -1166,20 +1397,58 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="nav">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <a class="nav-logo" href="#">MODERA</a>
-    <div class="nav-right">
-      <span class="nav-tag">모두의 새로운 시대</span>
-      <a class="nav-cta" href="#notify">First Edition</a>
-    </div>
   </nav>
+
+  <!-- Slide-out menu -->
+  <div id="navOverlay"></div>
+  <div id="navMenu">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    <div class="menu-brand">MODERA</div>
+    <a class="menu-link" href="#gallery">Coming Soon</a>
+    <a class="menu-link cta" href="#notify">Get Notified</a>
+    <a class="menu-link" href="#about">The Mission</a>
+    <a class="menu-link" href="#identity">NYC × Seoul</a>
+    <a class="menu-link" href="#spirit">The Spirit</a>
+    <a class="menu-link" href="#jindo">The Jindo</a>
+    <a class="menu-link" href="#collection">First Edition</a>
+    <a class="menu-link" href="#philosophy">The Way</a>
+  </div>
+
+  <!-- Coming June 2026 banner -->
+  <div id="launchBanner">
+    <div class="launch-track">
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+      <span class="launch-item">Coming June 2026</span><span class="launch-item">·</span>
+    </div>
+  </div>
 
   <!-- ─── HERO ─────────────────────────────────────────── -->
   <section id="hero">
     <div class="hero-bg-word" aria-hidden="true">충성</div>
 
-    <!-- IMG_1150.PNG: Korean logo stamp -->
+    <!-- Korean logo stamp — cloud shape -->
     <div class="hero-logo-stamp">
-      <img src="images/IMG_1150.PNG" alt="모데라 NYSL" />
+      <svg viewBox="0 0 160 122" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <clipPath id="cloudClip">
+            <path d="M 28,102 C 10,102 4,90 7,75 C 1,60 12,50 27,51 C 22,28 40,17 58,22 C 64,5 87,3 97,20 C 111,11 130,22 127,45 C 143,49 146,68 136,79 C 138,98 120,106 104,101 C 92,114 72,114 60,103 C 46,114 32,112 28,102 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M 28,102 C 10,102 4,90 7,75 C 1,60 12,50 27,51 C 22,28 40,17 58,22 C 64,5 87,3 97,20 C 111,11 130,22 127,45 C 143,49 146,68 136,79 C 138,98 120,106 104,101 C 92,114 72,114 60,103 C 46,114 32,112 28,102 Z" fill="#f0ebe0"/>
+        <image href="images/IMG_1150.PNG" x="10" y="10" width="140" height="102" clip-path="url(#cloudClip)" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
     </div>
 
     <p class="hero-eyebrow">NYC × SEOUL &nbsp;·&nbsp; All In. Always.</p>
@@ -1244,8 +1513,107 @@
     </div>
   </div>
 
+  <!-- ─── GALLERY: APPLIQUÉD ON GLOBAL STANDARDS ──────── -->
+  <section id="gallery">
+    <div class="gallery-header reveal">
+      <div class="gallery-header-left">
+        <div class="section-label">First Edition</div>
+        <h2 class="gallery-title">
+          Appliquéd on<br/><span class="outline">Global Standards</span>
+        </h2>
+      </div>
+      <p class="gallery-note">
+        Every piece numbered and registered. Once an edition closes, it does not return.
+        The metropolitan few who understand identity is built over time.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+        <div class="product-coming-overlay">
+          <span class="product-coming-label">Coming Soon</span>
+          <span class="product-coming-cta">Get Notified</span>
+        </div>
+        <div class="product-img-wrap">
+          <img src="images/hoodie3front.png" alt="Jindo NYC — Modera NYSL" />
+          <img class="product-img-back" src="images/hoodie3.png" alt="Jindo NYC back — Modera NYSL" />
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Jindo NYC</div>
+            <div class="product-sub">진도 V1 Hoodie — First Edition</div>
+          </div>
+          <div class="product-edition">No. 01</div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+        <div class="product-coming-overlay">
+          <span class="product-coming-label">Coming Soon</span>
+          <span class="product-coming-cta">Get Notified</span>
+        </div>
+        <div class="product-img-wrap">
+          <img src="images/hoodie2front.png" alt="Gwon-tu — Modera NYSL" />
+          <img class="product-img-back" src="images/hoodie2.png" alt="Gwon-tu back — Modera NYSL" />
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Gwon-tu</div>
+            <div class="product-sub">권투 Boxing Hoodie — First Edition</div>
+          </div>
+          <div class="product-edition">No. 02</div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="document.getElementById('notify').scrollIntoView({behavior:'smooth'})">
+        <div class="product-coming-overlay">
+          <span class="product-coming-label">Coming Soon</span>
+          <span class="product-coming-cta">Get Notified</span>
+        </div>
+        <div class="product-img-wrap">
+          <img src="images/Hoodie1front.png" alt="Jindo Dancheong — Modera NYSL" />
+          <img class="product-img-back" src="images/Hoodie1.png" alt="Jindo Dancheong back — Modera NYSL" />
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Jindo Dancheong</div>
+            <div class="product-sub">단청 V2 Hoodie — First Edition</div>
+          </div>
+          <div class="product-edition">No. 03</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── NOTIFY / WAITLIST ─────────────────────────────── -->
+  <section id="notify">
+    <div class="reveal">
+      <p class="notify-overline">Be First</p>
+      <h2 class="notify-title">Get<br/>Notified</h2>
+      <p class="notify-sub">
+        The first edition is limited. Once it closes, it does not return.
+        Register your place — be part of something that lasts.
+      </p>
+      <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
+        <input type="text" name="_trap" style="display:none" tabindex="-1" autocomplete="off" />
+        <input
+          class="notify-input"
+          type="email"
+          id="notifyEmail"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+        />
+        <button class="notify-btn" type="submit">Notify Me</button>
+      </form>
+      <p class="notify-note">No spam. First edition access only.</p>
+      <p class="notify-success" id="notifySuccess">You're on the list. Stay loyal. 충성.</p>
+    </div>
+  </section>
+
   <!-- ─── ABOUT / MISSION ───────────────────────────────── -->
-  <!-- IMG_3095.PNG: boxing scene represents the struggle of staying true -->
   <div id="about">
     <div class="about-text reveal">
       <div class="section-label">The Mission</div>
@@ -1274,7 +1642,6 @@
         </div>
       </div>
     </div>
-    <!-- IMG_3095.PNG fills the right panel — boxing scene as struggle metaphor -->
     <div class="about-image reveal">
       <img src="images/IMG_3095.PNG" alt="The struggle — two fighters representing the fight to stay true to your heritage" />
     </div>
@@ -1304,19 +1671,18 @@
   </div>
 
   <!-- ─── SPIRIT / THE BOUT ─────────────────────────────── -->
-  <!-- IMG_3097.PNG: red boxing gloves — the spirit of the fighter -->
   <div id="spirit">
     <div class="spirit-image reveal">
-      <img src="images/IMG_3097.PNG" alt="Modera boxing gloves — stay in the ring" />
+      <img src="images/IMG_3097.PNG" alt="Modera boxing gloves — staying in the ring" />
     </div>
     <div class="spirit-text reveal">
       <div class="spirit-bg-word" aria-hidden="true">FIGHT</div>
       <div class="section-label red">The Spirit</div>
-      <h2 class="spirit-title">Life is a bout.<br/>Stay in the ring.</h2>
+      <h2 class="spirit-title">Life is about<br/>staying in the ring.</h2>
       <p class="spirit-body">
         Gritty. Intentional. Deeply personal. The uniform for the modern-day warrior—shaped
         by the discipline of the boxing ring and the quiet dignity of one's ancestors.
-        Life in New York, combined with the pressure to maintain one's culture, is a bout
+        Life in New York, combined with the pressure to maintain one's culture, is about
         that requires constant movement, resilience, and pride. You don't leave the ring.
         You fight your way through.
       </p>
@@ -1333,72 +1699,11 @@
     </div>
   </div>
 
-  <!-- ─── GALLERY: APPLIQUÉD ON GLOBAL STANDARDS ──────── -->
-  <section id="gallery">
-    <div class="gallery-header reveal">
-      <div class="gallery-header-left">
-        <div class="section-label">First Edition</div>
-        <h2 class="gallery-title">
-          Appliquéd on<br/><span class="outline">Global Standards</span>
-        </h2>
-      </div>
-      <p class="gallery-note">
-        Every piece numbered and registered. Once an edition closes, it does not return.
-        The metropolitan few who understand identity is built over time.
-      </p>
-    </div>
-
-    <div class="gallery-grid">
-
-      <!-- IMG_3135.PNG: Jindo layered long sleeve -->
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="images/IMG_3135.PNG" alt="The Jindo Layer — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Jindo Layer</div>
-            <div class="product-sub">Layered Long Sleeve — First Edition</div>
-          </div>
-          <div class="product-edition">No. 01</div>
-        </div>
-      </div>
-
-      <!-- IMG_3136.PNG: Boxing gloves chest long sleeve -->
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="images/IMG_3136.PNG" alt="The Bout — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Bout</div>
-            <div class="product-sub">Boxy Long Sleeve — First Edition</div>
-          </div>
-          <div class="product-edition">No. 02</div>
-        </div>
-      </div>
-
-      <!-- IMG_3165.PNG: Jindo hoodie -->
-      <div class="product-card reveal">
-        <div class="product-img-wrap">
-          <img src="images/IMG_3165.PNG" alt="The Jindo Hoodie — Modera NYSL" />
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-name">The Jindo Hoodie</div>
-            <div class="product-sub">Heavyweight Hoodie — First Edition</div>
-          </div>
-          <div class="product-edition">No. 03</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ─── JINDO ─────────────────────────────────────────── -->
   <section id="jindo">
+    <div class="jindo-bg-char" aria-hidden="true">忠</div>
     <div class="reveal">
-      <div class="section-label">The Symbol</div>
+      <div class="section-label centered">The Symbol</div>
       <h2 class="jindo-title">The<br/>Loyalty<br/>of the<br/>Jindo</h2>
       <p class="jindo-body">
         The Jindo is a Korean national treasure — known for its unwavering loyalty
@@ -1407,16 +1712,27 @@
         that made you. The Jindo doesn't abandon its nature for a new place.
         Neither do we.
       </p>
-      <div class="jindo-glyph-row">
-        <span class="jindo-glyph-char">忠</span>
-        <div class="jindo-glyph-text">
-          <span class="jindo-glyph-label">충성 · Loyalty</span>
-          <span class="jindo-glyph-sub">The way of the Jindo. The way of Modera.</span>
+      <div class="jindo-attrs">
+        <div class="jindo-attr">
+          <span class="jindo-attr-kr">충성</span>
+          <span class="jindo-attr-en">Loyalty</span>
+        </div>
+        <div class="jindo-attr">
+          <span class="jindo-attr-kr">본능</span>
+          <span class="jindo-attr-en">Instinct</span>
+        </div>
+        <div class="jindo-attr">
+          <span class="jindo-attr-kr">고향</span>
+          <span class="jindo-attr-en">Home</span>
         </div>
       </div>
-    </div>
-    <div class="jindo-product-wrap reveal">
-      <img src="images/IMG_3135.PNG" alt="The Jindo Layer — heritage on global standards" />
+      <div class="jindo-seal">
+        <span class="jindo-seal-char">忠</span>
+        <div class="jindo-seal-text">
+          <span class="jindo-seal-label">충성 · Loyalty</span>
+          <span class="jindo-seal-sub">The way of the Jindo. The way of Modera.</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1489,31 +1805,6 @@
     </div>
   </section>
 
-  <!-- ─── NOTIFY / WAITLIST ─────────────────────────────── -->
-  <section id="notify">
-    <div class="reveal">
-      <p class="notify-overline">Be First</p>
-      <h2 class="notify-title">Get<br/>Notified</h2>
-      <p class="notify-sub">
-        The first edition is limited. Once it closes, it does not return.
-        Register your place — be part of something that lasts.
-      </p>
-      <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
-        <input
-          class="notify-input"
-          type="email"
-          id="notifyEmail"
-          placeholder="your@email.com"
-          required
-          autocomplete="email"
-        />
-        <button class="notify-btn" type="submit">Notify Me</button>
-      </form>
-      <p class="notify-note">No spam. First edition access only.</p>
-      <p class="notify-success" id="notifySuccess">You're on the list. Stay loyal. 충성.</p>
-    </div>
-  </section>
-
   <!-- ─── FOOTER ─────────────────────────────────────────── -->
   <footer>
     <!-- Slogan band -->
@@ -1551,9 +1842,42 @@
   <script>
     // ─── NAV ──────────────────────────────────────────────
     const nav = document.getElementById('nav');
+    const launchBanner = document.getElementById('launchBanner');
+
+    function updateBanner() {
+      launchBanner.style.top = nav.offsetHeight + 'px';
+    }
+    updateBanner();
+
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
+      updateBanner();
     }, { passive: true });
+
+    // ─── HAMBURGER MENU ───────────────────────────────────
+    const hamburger = document.getElementById('navHamburger');
+    const navMenu   = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    const menuClose  = document.getElementById('menuClose');
+
+    function openMenu() {
+      hamburger.classList.add('active');
+      navMenu.classList.add('open');
+      navOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('open');
+      navOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    navOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', closeMenu));
 
     // ─── SCROLL REVEAL ────────────────────────────────────
     const revealObs = new IntersectionObserver((entries) => {
@@ -1584,10 +1908,58 @@
     });
 
     // ─── NOTIFY FORM ──────────────────────────────────────
-    function handleNotify(e) {
+    async function handleNotify(e) {
       e.preventDefault();
-      document.getElementById('notifyForm').style.display = 'none';
-      document.getElementById('notifySuccess').style.display = 'block';
+      if (document.querySelector('input[name="_trap"]').value) return;
+      const email = document.getElementById('notifyEmail').value;
+      const btn = document.querySelector('.notify-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WpzcDK', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'revision': '2024-02-15'
+          },
+          body: JSON.stringify({
+            data: {
+              type: 'subscription',
+              attributes: {
+                profile: {
+                  data: {
+                    type: 'profile',
+                    attributes: { email }
+                  }
+                }
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: 'list',
+                    id: 'QS73uf'
+                  }
+                }
+              }
+            }
+          })
+        });
+
+        if (res.status === 202 || res.status === 200) {
+          document.getElementById('notifyForm').style.display = 'none';
+          document.getElementById('notifySuccess').style.display = 'block';
+        } else {
+          const body = await res.text();
+          console.error('Klaviyo error:', res.status, body);
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        console.error('Klaviyo fetch error:', err);
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
     }
 
     // ─── HERO PARALLAX ────────────────────────────────────
