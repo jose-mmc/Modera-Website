@@ -154,9 +154,9 @@
   </div>
 
   {% comment %} Use a Shopify collection called "first-edition" if present. Falls back to static cards. {% endcomment %}
-  {% if collections['project-taegeuk'] and collections['project-taegeuk'].products_count > 0 %}
+  {% if collections['frontpage'] and collections['frontpage'].products.size > 0 %}
     <div class="gallery-grid">
-      {% for product in collections['project-taegeuk'].products %}
+      {% for product in collections['frontpage'].products %}
         <a class="product-card reveal" href="{{ product.url }}">
           <div class="product-img-wrap">
             {% if product.featured_image %}
