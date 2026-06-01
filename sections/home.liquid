@@ -157,29 +157,30 @@
   {% if collections['first-edition'] and collections['first-edition'].products_count > 0 %}
     <div class="gallery-grid">
       {% for product in collections['first-edition'].products %}
-        <div class="product-card reveal">
+        <a class="product-card reveal" href="{{ product.url }}">
           <div class="product-img-wrap">
-            <a href="{{ product.url }}">
-              {% if product.featured_image %}
-                <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" />
-              {% else %}
-                <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="{{ product.title }}" />
-              {% endif %}
-            </a>
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" />
+            {% else %}
+              <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="{{ product.title }}" />
+            {% endif %}
           </div>
           <div class="product-info">
             <div>
               <div class="product-name">{{ product.title }}</div>
               <div class="product-sub">{{ product.vendor }}{% if product.type %} · {{ product.type }}{% endif %}</div>
             </div>
-            <div class="product-edition">No. {{ forloop.index }}</div>
+            <div class="product-right">
+              <div class="product-price">{{ product.price | money }}</div>
+              <div class="product-edition">No. {{ forloop.index }}</div>
+            </div>
           </div>
-        </div>
+        </a>
       {% endfor %}
     </div>
   {% else %}
     <div class="gallery-grid">
-      <div class="product-card reveal">
+      <a class="product-card reveal" href="/products/the-jindo-layer">
         <div class="product-img-wrap">
           <img src="{{ 'IMG_3135.PNG' | asset_url }}" alt="The Jindo Layer — Modera NYSL" />
         </div>
@@ -190,9 +191,9 @@
           </div>
           <div class="product-edition">No. 01</div>
         </div>
-      </div>
+      </a>
 
-      <div class="product-card reveal">
+      <a class="product-card reveal" href="/products/the-bout">
         <div class="product-img-wrap">
           <img src="{{ 'IMG_3136.PNG' | asset_url }}" alt="The Bout — Modera NYSL" />
         </div>
@@ -203,9 +204,9 @@
           </div>
           <div class="product-edition">No. 02</div>
         </div>
-      </div>
+      </a>
 
-      <div class="product-card reveal">
+      <a class="product-card reveal" href="/products/the-jindo-hoodie">
         <div class="product-img-wrap">
           <img src="{{ 'IMG_3165.PNG' | asset_url }}" alt="The Jindo Hoodie — Modera NYSL" />
         </div>
@@ -216,7 +217,7 @@
           </div>
           <div class="product-edition">No. 03</div>
         </div>
-      </div>
+      </a>
 
     </div>
   {% endif %}
@@ -245,13 +246,13 @@
 
 <section id="collection">
   <div class="reveal">
-    <p class="collection-overline">Dropping Soon</p>
+    <p class="collection-overline">Now Available</p>
     <h2 class="collection-main-title">
       FIRST<br/><span class="no">EDITION</span>
     </h2>
     <p class="collection-sub">모두의 새로운 시대 &nbsp;·&nbsp; Everyone's New Era</p>
     <p class="collection-body">
-      Every piece is numbered and registered. Once an edition closes, it does not return.
+      Every piece is numbered and registered. Once this edition closes, it does not return.
       Modera is built on a single rule: every garment must earn its place in a closet.
     </p>
   </div>
@@ -271,6 +272,9 @@
       <div class="col-rule-label">Final</div>
       <div class="col-rule-desc">Once an edition closes, it does not reopen. No restocks.</div>
     </div>
+  </div>
+  <div class="collection-cta reveal">
+    <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop First Edition</a>
   </div>
 </section>
 
@@ -303,14 +307,10 @@
 
 <section id="notify">
   <div class="reveal">
-    <p class="notify-overline">Be First</p>
-    <h2 class="notify-title">Get<br/>Notified</h2>
-    <p class="notify-sub">The first edition is limited. Once it closes, it does not return.</p>
-    <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
-      <input class="notify-input" type="email" id="notifyEmail" placeholder="your@email.com" required autocomplete="email" />
-      <button class="notify-btn" type="submit">Notify Me</button>
-    </form>
-    <p class="notify-note">No spam. First edition access only.</p>
-    <p class="notify-success" id="notifySuccess">You're on the list. Stay loyal. 충성.</p>
+    <p class="notify-overline">Now Available</p>
+    <h2 class="notify-title">First<br/>Edition</h2>
+    <p class="notify-sub">Every piece is numbered, registered, and final. Once this edition closes, it does not return.</p>
+    <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop the Collection</a>
+    <p class="notify-note">충성 · Stay loyal to the culture.</p>
   </div>
 </section>

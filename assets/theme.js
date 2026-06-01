@@ -34,17 +34,6 @@ document.querySelectorAll('.p-grid, .gallery-grid, .collection-rules').forEach((
   staggerObs.observe(el);
 });
 
-// Notify form
-function handleNotify(e) {
-  e.preventDefault();
-  const form = document.getElementById('notifyForm');
-  const success = document.getElementById('notifySuccess');
-  if (form) form.style.display = 'none';
-  if (success) success.style.display = 'block';
-}
-
-window.handleNotify = handleNotify;
-
 // Hero parallax
 const heroBg = document.querySelector('.hero-bg-word');
 window.addEventListener('scroll', () => {
