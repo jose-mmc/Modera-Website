@@ -20,6 +20,68 @@
   {% section 'footer' %}
 
   <script src="{{ 'theme.js' | asset_url }}"></script>
+
+  <!-- ── Discount Popup ── -->
+  <div id="discount-popup" class="discount-popup" aria-hidden="true">
+    <div class="discount-popup-inner">
+      <button class="discount-popup-close" id="discount-popup-close" aria-label="Close">✕</button>
+      <p class="discount-popup-overline">Exclusive Offer</p>
+      <h2 class="discount-popup-title">Free<br/>Shipping</h2>
+      <p class="discount-popup-sub">On orders over <strong>$110</strong></p>
+      <div class="discount-code-wrap">
+        <span class="discount-code" id="discount-code">TAEGEUK2</span>
+        <button class="discount-copy-btn" id="discount-copy-btn">Copy</button>
+      </div>
+      <p class="discount-popup-note">One use per customer · Applied at checkout</p>
+    </div>
+  </div>
+  <div class="discount-popup-backdrop" id="discount-popup-backdrop"></div>
+
+  <script>
+  (function () {
+    var STORAGE_KEY = 'modera_discount_shown';
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
+
+    var popup     = document.getElementById('discount-popup');
+    var backdrop  = document.getElementById('discount-popup-backdrop');
+    var closeBtn  = document.getElementById('discount-popup-close');
+    var copyBtn   = document.getElementById('discount-copy-btn');
+    var triggered = false;
+
+    function openPopup() {
+      if (triggered) return;
+      triggered = true;
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      popup.classList.add('active');
+      backdrop.classList.add('active');
+      popup.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePopup() {
+      popup.classList.remove('active');
+      backdrop.classList.remove('active');
+      popup.setAttribute('aria-hidden', 'true');
+    }
+
+    window.addEventListener('scroll', function handler() {
+      if (window.scrollY > 80) {
+        openPopup();
+        window.removeEventListener('scroll', handler);
+      }
+    }, { passive: true });
+
+    closeBtn.addEventListener('click', closePopup);
+    backdrop.addEventListener('click', closePopup);
+
+    copyBtn.addEventListener('click', function () {
+      navigator.clipboard.writeText('TAEGEUK2').then(function () {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);
+      });
+    });
+  })();
+  </script>
+
   {{ content_for_footer }}
 </body>
 </html>
