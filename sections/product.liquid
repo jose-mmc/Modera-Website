@@ -1,0 +1,161 @@
+<section id="product-page">
+  <div class="product-layout">
+
+    <!-- ── LEFT: Images ── -->
+    <div class="product-media">
+      <div class="product-main-img">
+        <img
+          id="product-featured-img"
+          src="{{ product.featured_image | img_url: '1000x' }}"
+          alt="{{ product.title }}"
+        />
+      </div>
+      {% if product.images.size > 1 %}
+      <div class="product-thumbs">
+        {% for image in product.images %}
+          <button
+            type="button"
+            class="product-thumb{% if forloop.first %} active{% endif %}"
+            data-src="{{ image | img_url: '1000x' }}"
+          >
+            <img src="{{ image | img_url: '200x' }}" alt="{{ product.title }}" />
+          </button>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ── RIGHT: Details + Form ── -->
+    <div class="product-details">
+      <p class="product-eyebrow">First Edition &nbsp;·&nbsp; NYC × Seoul</p>
+      <h1 class="product-title">{{ product.title }}</h1>
+      <p class="product-price" id="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+
+      {% if product.description != blank %}
+        <div class="product-desc">{{ product.description }}</div>
+      {% endif %}
+
+      <!-- Variant data for JS -->
+      <script>
+        window.__variants = {{ product.variants | json }};
+      </script>
+
+      <form action="/cart/add" method="post" id="product-form">
+        <input type="hidden" name="id" id="variant-id" value="{{ product.selected_or_first_available_variant.id }}" />
+
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="product-option">
+              <span class="option-label">{{ option.name }}</span>
+              <div class="option-values" data-option-index="{{ forloop.index0 }}">
+                {% for value in option.values %}
+                  <button
+                    type="button"
+                    class="size-btn"
+                    data-value="{{ value }}"
+                  >{{ value }}</button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endunless %}
+
+        <div class="product-qty-row">
+          <span class="option-label">Quantity</span>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" id="qty-minus">−</button>
+            <input type="number" name="quantity" id="qty-input" value="1" min="1" class="qty-input" readonly />
+            <button type="button" class="qty-btn" id="qty-plus">+</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-cta btn-cta--large btn-atc" id="btn-atc">
+          Add to Cart
+        </button>
+        <p class="atc-note" id="atc-note"></p>
+      </form>
+
+      <div class="product-tagline">
+        <span class="product-tagline-kr">충성</span>
+        <span class="product-tagline-en">Stay loyal to the culture.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const variants = window.__variants || [];
+  const selectedOptions = {};
+
+  // ── Thumbnail switcher ──
+  document.querySelectorAll('.product-thumb').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.getElementById('product-featured-img').src = btn.dataset.src;
+      document.querySelectorAll('.product-thumb').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+  // ── Size / option buttons ──
+  document.querySelectorAll('.option-values').forEach(function (group) {
+    var optionIndex = parseInt(group.dataset.optionIndex, 10);
+    group.querySelectorAll('.size-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        selectedOptions[optionIndex] = btn.dataset.value;
+        updateVariant();
+      });
+    });
+  });
+
+  function updateVariant() {
+    var matched = variants.find(function (v) {
+      return Object.keys(selectedOptions).every(function (idx) {
+        var key = 'option' + (parseInt(idx, 10) + 1);
+        return v[key] === selectedOptions[idx];
+      });
+    });
+
+    if (matched) {
+      document.getElementById('variant-id').value = matched.id;
+      document.getElementById('product-price').textContent = formatMoney(matched.price);
+      var atc = document.getElementById('btn-atc');
+      var note = document.getElementById('atc-note');
+      if (matched.available) {
+        atc.textContent = 'Add to Cart';
+        atc.disabled = false;
+        atc.classList.remove('btn-atc--soldout');
+        note.textContent = '';
+      } else {
+        atc.textContent = 'Sold Out';
+        atc.disabled = true;
+        atc.classList.add('btn-atc--soldout');
+        note.textContent = 'This size is sold out.';
+      }
+    }
+  }
+
+  function formatMoney(cents) {
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  // ── Quantity ──
+  document.getElementById('qty-minus').addEventListener('click', function () {
+    var input = document.getElementById('qty-input');
+    if (parseInt(input.value, 10) > 1) input.value = parseInt(input.value, 10) - 1;
+  });
+  document.getElementById('qty-plus').addEventListener('click', function () {
+    var input = document.getElementById('qty-input');
+    input.value = parseInt(input.value, 10) + 1;
+  });
+
+  // Auto-select first available option per group
+  document.querySelectorAll('.option-values').forEach(function (group) {
+    var first = group.querySelector('.size-btn');
+    if (first) first.click();
+  });
+})();
+</script>
