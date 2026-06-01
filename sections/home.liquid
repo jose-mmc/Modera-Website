@@ -148,8 +148,8 @@
       </h2>
     </div>
     <p class="gallery-note">
-      Every piece numbered and registered. Once an edition closes, it does not return.
-      The metropolitan few who understand identity is built over time.
+      Every piece made with intention. Once an edition closes, it does not return.
+      For the metropolitan few who carry their culture into every room.
     </p>
   </div>
 
@@ -170,10 +170,7 @@
               <div class="product-name">{{ product.title }}</div>
               <div class="product-sub">{{ product.vendor }}{% if product.type %} · {{ product.type }}{% endif %}</div>
             </div>
-            <div class="product-right">
-              <div class="product-price">{{ product.price | money }}</div>
-              <div class="product-edition">No. {{ forloop.index }}</div>
-            </div>
+            <div class="product-price">{{ product.price | money }}</div>
           </div>
         </a>
       {% endfor %}
@@ -190,7 +187,6 @@
             <div class="product-name">Jindo NYC</div>
             <div class="product-sub">진도 V1 Hoodie — First Edition</div>
           </div>
-          <div class="product-edition">No. 01</div>
         </div>
       </a>
 
@@ -204,7 +200,6 @@
             <div class="product-name">Gwon-tu</div>
             <div class="product-sub">권투 Boxing Hoodie — First Edition</div>
           </div>
-          <div class="product-edition">No. 02</div>
         </div>
       </a>
 
@@ -218,7 +213,6 @@
             <div class="product-name">Jindo Dancheong</div>
             <div class="product-sub">단청 V2 Hoodie — First Edition</div>
           </div>
-          <div class="product-edition">No. 03</div>
         </div>
       </a>
 
@@ -255,26 +249,47 @@
     </h2>
     <p class="collection-sub">모두의 새로운 시대 &nbsp;·&nbsp; Everyone's New Era</p>
     <p class="collection-body">
-      Every piece is numbered and registered. Once this edition closes, it does not return.
-      Modera is built on a single rule: every garment must earn its place in a closet.
+      Built for the modern-day warrior. Every garment must earn its place in a closet.
+      Once this edition closes, it does not return.
     </p>
   </div>
-  <div class="collection-rules reveal">
-    <div class="col-rule">
-      <div class="col-rule-num">01</div>
-      <div class="col-rule-label">Numbered</div>
-      <div class="col-rule-desc">Every piece is individually numbered. Your unit is yours alone.</div>
-    </div>
-    <div class="col-rule">
-      <div class="col-rule-num">02</div>
-      <div class="col-rule-label">Registered</div>
-      <div class="col-rule-desc">Each garment is registered to its owner at purchase.</div>
-    </div>
-    <div class="col-rule">
-      <div class="col-rule-num">03</div>
-      <div class="col-rule-label">Final</div>
-      <div class="col-rule-desc">Once an edition closes, it does not reopen. No restocks.</div>
-    </div>
+  <div class="gallery-grid collection-product-grid reveal">
+    <a class="product-card" href="/products/jindo-nyc-%EC%A7%84%EB%8F%84-hoodie-v1">
+      <div class="product-img-wrap">
+        <img src="{{ 'hoodie3front.png' | asset_url }}" alt="Jindo NYC — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'hoodie3.png' | asset_url }}" alt="Jindo NYC back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Jindo NYC</div>
+          <div class="product-sub">진도 V1 Hoodie — First Edition</div>
+        </div>
+      </div>
+    </a>
+    <a class="product-card" href="/products/gwon-tu-%EA%B6%8C%ED%88%AC-boxing-inspired-hoodie">
+      <div class="product-img-wrap">
+        <img src="{{ 'hoodie2front.png' | asset_url }}" alt="Gwon-tu — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'hoodie2.png' | asset_url }}" alt="Gwon-tu back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Gwon-tu</div>
+          <div class="product-sub">권투 Boxing Hoodie — First Edition</div>
+        </div>
+      </div>
+    </a>
+    <a class="product-card" href="/products/jindo-dancheong-%EB%8B%A8%EC%B2%AD-v2-hoodie">
+      <div class="product-img-wrap">
+        <img src="{{ 'Hoodie1front.png' | asset_url }}" alt="Jindo Dancheong — Modera NYSL" />
+        <img class="product-img-back" src="{{ 'Hoodie1.png' | asset_url }}" alt="Jindo Dancheong back — Modera NYSL" />
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Jindo Dancheong</div>
+          <div class="product-sub">단청 V2 Hoodie — First Edition</div>
+        </div>
+      </div>
+    </a>
   </div>
   <div class="collection-cta reveal">
     <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop First Edition</a>
@@ -312,7 +327,7 @@
   <div class="reveal">
     <p class="notify-overline">Now Available</p>
     <h2 class="notify-title">First<br/>Edition</h2>
-    <p class="notify-sub">Every piece is numbered, registered, and final. Once this edition closes, it does not return.</p>
+    <p class="notify-sub">Once this edition closes, it does not return. Built for those who carry their culture into every room.</p>
     <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop the Collection</a>
     <p class="notify-note">충성 · Stay loyal to the culture.</p>
   </div>

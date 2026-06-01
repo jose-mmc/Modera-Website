@@ -409,6 +409,7 @@ body::after {
 
 /* ─── COLLECTION CTA ─────────────────────────────────── */
 .collection-cta { text-align: center; margin-top: 72px; }
+.collection-product-grid { margin-top: 72px; }
 
 /* ─── NOTIFY / SHOP CTA ──────────────────────────────── */
 #notify { background: var(--black); padding: 140px 52px; text-align: center; border-top: 1px solid var(--border); }
