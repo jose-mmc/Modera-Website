@@ -1,0 +1,39 @@
+<section id="collection-page">
+
+  <div class="collection-page-header reveal">
+    <div class="section-label">{{ collection.title }}</div>
+    <h1 class="collection-page-title">
+      FIRST<br/><span class="outline">EDITION</span>
+    </h1>
+    {% if collection.description != blank %}
+      <p class="collection-page-desc">{{ collection.description }}</p>
+    {% else %}
+      <p class="collection-page-desc">Every piece made with intention. Once this edition closes, it does not return.</p>
+    {% endif %}
+  </div>
+
+  <div class="gallery-grid collection-page-grid">
+    {% for product in collection.products %}
+      <a class="product-card reveal" href="{{ product.url }}">
+        <div class="product-img-wrap">
+          {% if product.images.size > 1 %}
+            <img src="{{ product.images[0] | img_url: '800x' }}" alt="{{ product.title }}" />
+            <img class="product-img-back" src="{{ product.images[1] | img_url: '800x' }}" alt="{{ product.title }} back" />
+          {% elsif product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" />
+          {% endif %}
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">{{ product.title }}</div>
+            <div class="product-sub">{{ product.type }}{% if product.type != blank and product.vendor != blank %} · {% endif %}{{ product.vendor }}</div>
+          </div>
+          <div class="product-price">{{ product.price | money }}</div>
+        </div>
+      </a>
+    {% else %}
+      <p class="collection-empty">No products found.</p>
+    {% endfor %}
+  </div>
+
+</section>
