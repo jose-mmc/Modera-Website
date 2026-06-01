@@ -154,9 +154,9 @@
   </div>
 
   {% comment %} Use a Shopify collection called "first-edition" if present. Falls back to static cards. {% endcomment %}
-  {% if collections['first-edition'] and collections['first-edition'].products_count > 0 %}
+  {% if collections['project-taegeuk'] and collections['project-taegeuk'].products_count > 0 %}
     <div class="gallery-grid">
-      {% for product in collections['first-edition'].products %}
+      {% for product in collections['project-taegeuk'].products %}
         <a class="product-card reveal" href="{{ product.url }}">
           <div class="product-img-wrap">
             {% if product.featured_image %}
@@ -292,7 +292,7 @@
     </a>
   </div>
   <div class="collection-cta reveal">
-    <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop First Edition</a>
+    <a class="btn-cta btn-cta--large" href="/collections/project-taegeuk">Shop First Edition</a>
   </div>
 </section>
 
@@ -328,7 +328,7 @@
     <p class="notify-overline">Now Available</p>
     <h2 class="notify-title">First<br/>Edition</h2>
     <p class="notify-sub">Once this edition closes, it does not return. Built for those who carry their culture into every room.</p>
-    <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop the Collection</a>
+    <a class="btn-cta btn-cta--large" href="/collections/project-taegeuk">Shop the Collection</a>
     <p class="notify-note">충성 · Stay loyal to the culture.</p>
   </div>
 </section>
