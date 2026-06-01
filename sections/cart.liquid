@@ -1,0 +1,87 @@
+<section id="cart-page">
+  <div class="cart-inner">
+
+    <div class="cart-header reveal">
+      <div class="section-label">Your Cart</div>
+      <h1 class="cart-title">
+        {% if cart.item_count == 0 %}
+          Nothing yet.
+        {% else %}
+          {{ cart.item_count }} {{ cart.item_count | pluralize: 'Item', 'Items' }}
+        {% endif %}
+      </h1>
+    </div>
+
+    {% if cart.item_count == 0 %}
+      <div class="cart-empty">
+        <p class="cart-empty-msg">Your cart is empty — the collection won't be here forever.</p>
+        <a class="btn-cta btn-cta--large" href="/collections/first-edition">Shop First Edition</a>
+      </div>
+    {% else %}
+      <form action="/cart" method="post" id="cart-form">
+
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <div class="cart-item">
+              <a class="cart-item-img-wrap" href="{{ item.url }}">
+                <img src="{{ item.image | img_url: '300x' }}" alt="{{ item.title }}" />
+              </a>
+              <div class="cart-item-info">
+                <a class="cart-item-title" href="{{ item.url }}">{{ item.product.title }}</a>
+                {% unless item.variant.title == 'Default Title' %}
+                  <p class="cart-item-variant">{{ item.variant.title }}</p>
+                {% endunless %}
+                <p class="cart-item-price">{{ item.price | money }}</p>
+                <div class="cart-item-qty">
+                  <label class="option-label">Qty</label>
+                  <div class="qty-control">
+                    <button type="button" class="qty-btn cart-qty-btn" data-line="{{ forloop.index }}" data-delta="-1">−</button>
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      class="qty-input"
+                      data-line="{{ forloop.index }}"
+                    />
+                    <button type="button" class="qty-btn cart-qty-btn" data-line="{{ forloop.index }}" data-delta="1">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="cart-item-right">
+                <p class="cart-item-total">{{ item.line_price | money }}</p>
+                <a class="cart-item-remove" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="cart-footer">
+          <div class="cart-subtotal">
+            <span class="cart-subtotal-label">Subtotal</span>
+            <span class="cart-subtotal-price">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-tax-note">Taxes and shipping calculated at checkout.</p>
+          <a class="btn-cta btn-cta--large btn-checkout" href="/checkout">Proceed to Checkout</a>
+          <a class="cart-continue" href="/collections/first-edition">← Continue Shopping</a>
+        </div>
+
+      </form>
+    {% endif %}
+
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.cart-qty-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var line = btn.dataset.line;
+    var input = document.querySelector('.qty-input[data-line="' + line + '"]');
+    var current = parseInt(input.value, 10);
+    var delta = parseInt(btn.dataset.delta, 10);
+    var next = Math.max(0, current + delta);
+    input.value = next;
+    document.getElementById('cart-form').submit();
+  });
+});
+</script>

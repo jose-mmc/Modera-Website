@@ -41,6 +41,7 @@
       </script>
 
       <form action="/cart/add" method="post" id="product-form">
+        <input type="hidden" name="return_to" value="/cart" />
         <input type="hidden" name="id" id="variant-id" value="{{ product.selected_or_first_available_variant.id }}" />
 
         {% unless product.has_only_default_variant %}
